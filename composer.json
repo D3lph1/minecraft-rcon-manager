@@ -1,0 +1,25 @@
+{
+    "name": "d3lph1/minecraft-rcon-manager",
+    "description": "Library for easy interaction with the minecraft server using rcon.",
+    "keywords": ["mc", "minecraft", "rcon"],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bogdan Chertkov",
+            "email": "d3lph1.contact@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.8.21"
+    },
+    "autoload": {
+        "psr-4": {
+            "D3lph1\\MinecraftRconManager\\": "src",
+            "D3lph1\\MinecraftRconManager\\tests\\": "tests"
+        }
+    }
+}
