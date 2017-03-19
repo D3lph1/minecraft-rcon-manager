@@ -30,6 +30,11 @@ class Rcon
     private $socket;
 
     /**
+     * @var mixed
+     */
+    private $last = null;
+
+    /**
      * @param Socket $socket
      * @param string $password
      */
@@ -87,11 +92,13 @@ class Rcon
 
             if ($response['type'] === self::SERVERDATA_RESPONSE_VALUE) {
                 if ($response['id'] === $id) {
+                    $response['body'] = trim($response['body']);
+                    $this->last = $response;
                     if ($getFullResponse) {
                         return $response;
                     }
 
-                    return trim($response['body']);
+                    return $this->last['body'];
                 }
 
                 // If the identifiers do not match
@@ -100,6 +107,14 @@ class Rcon
         }
 
         return false;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function last()
+    {
+        return $this->last;
     }
 
     /**
