@@ -4,7 +4,7 @@ Library for easy interaction with the minecraft server using rcon.
 ## Installation
 Execute command:
 ```bash
-composer require d3lph1/minecraft-rcon-manager "~1.0"
+composer require d3lph1/minecraft-rcon-manager ~1.0
 ```
 or add line to require section of `composer.json`
 ```json
