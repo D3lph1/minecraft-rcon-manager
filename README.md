@@ -6,13 +6,9 @@ Execute command:
 ```bash
 composer require d3lph1/minecraft-rcon-manager ~1.0
 ```
-or add line to require section of `composer.json`
+or add line to require section of composer.json
 ```json
 "d3lph1/minecraft-rcon-manage": "~1.0",
-```
-and execute:
-```bash
-composer update
 ```
 
 ## Usage
@@ -74,7 +70,7 @@ Where:
 * `$host` - Server host (By default, `127.0.0.1`)
 * `$port` - Rcon port (By default, `25575`)
 * `$password` - Rcon password
-* `$timeout` - Connection timeout (By default, `10` seconds)
+* `$timeout` - Connection timeout (By default, `1` second)
 
 
 You can also add the server to the server pool in order to get the connection instance later:
@@ -86,7 +82,7 @@ $connector->add('hi_tech', [
     'host' => '127.0.0.1',
     'port' => 25575,
     'password' => '123456',
-    'timeout' => 10
+    'timeout' => 1
 ]);
 
 // Since the Connector class implements the ArrayAccess interface,
@@ -95,7 +91,7 @@ $connector['mmo'] = [
     'host' => '127.0.0.1',
     'port' => 25576,
     'password' => '123456',
-    'timeout' => 10
+    'timeout' => 1
 ];
 ```
 

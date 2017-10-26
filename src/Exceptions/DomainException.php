@@ -10,7 +10,7 @@ namespace D3lph1\MinecraftRconManager\Exceptions;
  * @package D3lph1\MinecraftRconManager\Exceptions
  */
 
-class AccessDenyException extends RuntimeException
+class DomainException extends \DomainException
 {
     //
 }

@@ -12,7 +12,7 @@ use D3lph1\MinecraftRconManager\Connector;
  * @package D3lph1\MinecraftRconManager\tests
  */
 
-class FunctionalTest extends \PHPUnit_Framework_TestCase
+class FeatureTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Test send commands on one server

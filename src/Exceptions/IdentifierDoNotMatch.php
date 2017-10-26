@@ -10,7 +10,7 @@ namespace D3lph1\MinecraftRconManager\Exceptions;
  * @package D3lph1\MinecraftRconManager\Exceptions
  */
 
-class IdentifierDoNotMatch extends \RuntimeException
+class IdentifierDoNotMatch extends RuntimeException
 {
     /**
      * @param string          $requestId

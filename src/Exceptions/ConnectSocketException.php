@@ -10,7 +10,7 @@ namespace D3lph1\MinecraftRconManager\Exceptions;
  * @package D3lph1\MinecraftRconManager\Exceptions
  */
 
-class ConnectSocketException extends \RuntimeException
+class ConnectSocketException extends RuntimeException
 {
     /**
      * @param string          $host RCON host

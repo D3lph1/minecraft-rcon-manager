@@ -3,6 +3,7 @@
 namespace D3lph1\MinecraftRconManager;
 
 use D3lph1\MinecraftRconManager\Exceptions\ConnectSocketException;
+use D3lph1\MinecraftRconManager\Exceptions\ServerDoesNotExistsException;
 
 /**
  * This class is part of the library d3lph1/minecraft-rcon-manager
@@ -49,9 +50,9 @@ class Connector implements \ArrayAccess
      * @param null|string|array|Rcon $host     Server host
      * @param null|int               $port     Server port
      * @param null|string            $password Server password
-     * @param int                    $timeout  Server connection timeout
+     * @param float                  $timeout  Server connection timeout
      */
-    public function add($name, $host = null, $port = null, $password = null, $timeout = 10)
+    public function add($name, $host = null, $port = null, $password = null, $timeout = 1.0)
     {
         if (is_array($host) or $host instanceof Rcon) {
             $this->servers[$name] = $host;
@@ -63,7 +64,7 @@ class Connector implements \ArrayAccess
             'host' => (string)$host,
             'port' => (int)$port,
             'password' => (string)$password,
-            'timeout' => (int)$timeout
+            'timeout' => (float)$timeout
         ];
     }
 
@@ -86,9 +87,7 @@ class Connector implements \ArrayAccess
             return $this->connect($server['host'], $server['port'], $server['password'], $server['timeout']);
         }
 
-        throw new \InvalidArgumentException(
-            "Server with name \"{$name}\" does not exists in the server pool"
-        );
+        throw new ServerDoesNotExistsException($name);
     }
 
     /**
@@ -116,9 +115,7 @@ class Connector implements \ArrayAccess
             return;
         }
 
-        throw new \InvalidArgumentException(
-            "Server with name \"{$name}\" does not exists in the server pool"
-        );
+        throw new ServerDoesNotExistsException($name);
     }
 
     /**
@@ -127,13 +124,13 @@ class Connector implements \ArrayAccess
      * @param string $host     Server host
      * @param int    $port     Server port
      * @param string $password Server password
-     * @param int    $timeout  Server connection timeout
+     * @param float  $timeout  Server connection timeout
      *
      * @throws ConnectSocketException
      *
      * @return Rcon
      */
-    public function connect($host = '127.0.0.1', $port = 25575, $password, $timeout = 10)
+    public function connect($host = '127.0.0.1', $port = 25575, $password, $timeout = 1.0)
     {
         $this->socket = $this->open($host, $port, $timeout);
 
@@ -158,7 +155,7 @@ class Connector implements \ArrayAccess
     /**
      * @param string $host
      * @param int    $port
-     * @param int    $timeout
+     * @param float  $timeout
      *
      * @return resource
      */
@@ -184,18 +181,7 @@ class Connector implements \ArrayAccess
     }
 
     /**
-     * Whether a offset exists
-     * @link  http://php.net/manual/en/arrayaccess.offsetexists.php
-     *
-     * @param mixed $offset <p>
-     *                      An offset to check for.
-     *                      </p>
-     *
-     * @return boolean true on success or false on failure.
-     * </p>
-     * <p>
-     * The return value will be casted to boolean if non-boolean was returned.
-     * @since 5.0.0
+     * {@inheritdoc}
      */
     public function offsetExists($offset)
     {
@@ -203,15 +189,7 @@ class Connector implements \ArrayAccess
     }
 
     /**
-     * Offset to retrieve
-     * @link  http://php.net/manual/en/arrayaccess.offsetget.php
-     *
-     * @param mixed $offset <p>
-     *                      The offset to retrieve.
-     *                      </p>
-     *
-     * @return mixed Can return all value types.
-     * @since 5.0.0
+     * {@inheritdoc}
      */
     public function offsetGet($offset)
     {
@@ -219,18 +197,7 @@ class Connector implements \ArrayAccess
     }
 
     /**
-     * Offset to set
-     * @link  http://php.net/manual/en/arrayaccess.offsetset.php
-     *
-     * @param mixed $offset <p>
-     *                      The offset to assign the value to.
-     *                      </p>
-     * @param mixed $value  <p>
-     *                      The value to set.
-     *                      </p>
-     *
-     * @return void
-     * @since 5.0.0
+     * {@inheritdoc}
      */
     public function offsetSet($offset, $value)
     {
@@ -246,15 +213,7 @@ class Connector implements \ArrayAccess
     }
 
     /**
-     * Offset to unset
-     * @link  http://php.net/manual/en/arrayaccess.offsetunset.php
-     *
-     * @param mixed $offset <p>
-     *                      The offset to unset.
-     *                      </p>
-     *
-     * @return void
-     * @since 5.0.0
+     * {@inheritdoc}
      */
     public function offsetUnset($offset)
     {
