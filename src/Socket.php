@@ -4,7 +4,7 @@ namespace D3lph1\MinecraftRconManager;
 
 /**
  * This class is part of the library d3lph1/minecraft-rcon-manager
- * Sends data to the socket and then reads it
+ * Sends data to the socket and then reads it.
  *
  * @licence MIT
  * @author  D3lph1 <d3lph1.contact@gmail.com>
