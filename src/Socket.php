@@ -7,14 +7,14 @@ namespace D3lph1\MinecraftRconManager;
  * Sends data to the socket and then reads it
  *
  * @licence MIT
- * @author D3lph1 <d3lph1.contact@gmail.com>
+ * @author  D3lph1 <d3lph1.contact@gmail.com>
  * @package D3lph1\MinecraftRconManager
  */
 
 class Socket
 {
     /**
-     * Socket stream resource
+     * Socket stream resource.
      *
      * @var resource
      */
@@ -22,6 +22,7 @@ class Socket
 
     /**
      * @param resource $socket
+     *
      * @throws \InvalidArgumentException
      */
     public function __construct($socket)
@@ -36,7 +37,7 @@ class Socket
     }
 
     /**
-     * Read data from socket
+     * Read data from socket.
      *
      * @return array
      */
@@ -57,7 +58,7 @@ class Socket
     }
 
     /**
-     * Write data in socket
+     * Write data in socket.
      *
      * @param int    $id
      * @param int    $type
@@ -86,7 +87,7 @@ class Socket
     }
 
     /**
-     * Disconnect from RCON
+     * Close RCON connection.
      */
     public function disconnect()
     {

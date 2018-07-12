@@ -2,7 +2,7 @@
 
 namespace D3lph1\MinecraftRconManager\tests;
 
-use D3lph1\MinecraftRconManager\Connector;
+use D3lph1\MinecraftRconManager\DefaultConnector;
 
 /**
  * This class is part of the library d3lph1/minecraft-rcon-manager
@@ -19,11 +19,11 @@ class FeatureTest extends \PHPUnit_Framework_TestCase
      */
     public function testOneServerSend()
     {
-        $connector = new Connector();
+        $connector = new DefaultConnector();
         $rcon = $connector->connect('127.0.0.1', 25575, '123456', 10);
 
         $response = $rcon->send('say Yes, it works...');
-        $this->assertEquals('§d[Rcon§d] Yes, it works...', $response);
+        self::assertEquals('§d[Rcon§d] Yes, it works...', $response);
         $rcon->disconnect();
     }
 
@@ -32,7 +32,7 @@ class FeatureTest extends \PHPUnit_Framework_TestCase
      */
     public function testManyServers()
     {
-        $connector = new Connector();
+        $connector = new DefaultConnector();
 
         // Add server in servers pool
         $connector->add('hi_tech', '127.0.0.1', 25575, '123456', 10);
@@ -54,8 +54,8 @@ class FeatureTest extends \PHPUnit_Framework_TestCase
         $responseMmo = $rconMmo->send('say Yes, it works on MMO!');
 
         // Asserting
-        $this->assertEquals('§d[Rcon§d] Yes, it works on HiTech!', $responseHiTech);
-        $this->assertEquals('§d[Rcon§d] Yes, it works on MMO!', $responseMmo);
+        self::assertEquals('§d[Rcon§d] Yes, it works on HiTech!', $responseHiTech);
+        self::assertEquals('§d[Rcon§d] Yes, it works on MMO!', $responseMmo);
 
         $rconHiTech->disconnect();
         $rconMmo->disconnect();

@@ -10,11 +10,10 @@ use D3lph1\MinecraftRconManager\Exceptions\IdentifierDoNotMatch;
  * The class in charge of working with RCON
  *
  * @licence MIT
- * @author D3lph1 <d3lph1.contact@gmail.com>
+ * @author  D3lph1 <d3lph1.contact@gmail.com>
  * @package D3lph1\MinecraftRconManager
  */
-
-class Rcon
+class DefaultConnection implements Connection
 {
     const SERVERDATA_AUTH = 3;
 
@@ -48,6 +47,7 @@ class Rcon
      * Make auth RCON - user request
      *
      * @param string $password
+     *
      * @throws IdentifierDoNotMatch
      * @throws AccessDenyException
      *
@@ -74,13 +74,7 @@ class Rcon
     }
 
     /**
-     * Send command
-     *
-     * @param string $command
-     * @param bool   $getFullResponse
-     * @throws IdentifierDoNotMatch
-     *
-     * @return array|bool
+     * {@inheritdoc}
      */
     public function send($command, $getFullResponse = false)
     {
@@ -106,11 +100,11 @@ class Rcon
             }
         }
 
-        return false;
+        return null;
     }
 
     /**
-     * @return mixed
+     * {@inheritdoc}
      */
     public function last()
     {
@@ -118,7 +112,7 @@ class Rcon
     }
 
     /**
-     * Disconnect from RCON
+     * {@inheritdoc}
      */
     public function disconnect()
     {

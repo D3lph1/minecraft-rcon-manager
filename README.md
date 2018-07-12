@@ -15,11 +15,11 @@ or add line to require section of composer.json
 
 ### Overview
 ```php
-use \D3lph1\MinecraftRconManager\Connector;
+use \D3lph1\MinecraftRconManager\DefaultConnector;
 use \D3lph1\MinecraftRconManager\Exceptions\ConnectSocketException;
 use \D3lph1\MinecraftRconManager\Exceptions\AccessDenyException;
 
-$connector = new Connector();
+$connector = new DefaultConnector();
 try {
     // Connect to RCON
     $rcon = $connector->connect('127.0.0.1', 25575, '123456');
@@ -50,7 +50,7 @@ print_r($response);
 // Get last response
 $last = $rcon->getLast();
 
-// Disconnect from RCON
+// Close RCON connection
 $rcon->disconnect();
 
 ```
@@ -58,9 +58,9 @@ $rcon->disconnect();
 ### Connecting
 First, you need to create an instance of the Connector class. The instance will serve to create a connection to the server, add servers to the pool and remove them from there.
 ```php
-use \D3lph1\MinecraftRconManager\Connector;
+use \D3lph1\MinecraftRconManager\DefaultConnector;
 
-$connector = new Connector();
+$connector = new DefaultConnector();
 ```
 In order to connect directly to the server, use this construction
 ```php
@@ -136,4 +136,3 @@ Disconnect from server:
 ```php
 $rcon->disconnect();
 ```
-
